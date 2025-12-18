@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>R-calculator | Crop Prediction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Fixed logo bar -->
+  <div class="site-header">
+    <img src="r-logo.png" alt="R-calculator logo" class="top-logo" />
+  </div>
+
+  <!-- Splash Screen -->
+  <div id="splash" class="splash-screen">
+    <div class="splash-inner">
+      <img src="r-logo.png" alt="R-calculator logo" class="splash-logo" />
+      <div class="splash-tagline">
+        Smart crop yield prediction for your agricultural land
+      </div>
+      <div class="splash-poster">
+        <span class="splash-poster-label">Poster Code</span>
+        <span>DUGP3-362</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app">
+    <header class="app-header">
+      <div class="app-title-group">
+        <div class="app-title">R-calculator</div>
+        <div class="app-subtitle">
+          Crop prediction based on land area, rainfall & fertilizers
+        </div>
+      </div>
+      <div class="app-badge">
+        Poster Code: <strong>DUGP3-362</strong>
+      </div>
+    </header>
+
+    <main class="app-body">
+      <div class="form-grid">
+        <!-- Crop Selection -->
+        <div class="form-group">
+          <label class="form-label" for="crop">
+            Select crop
+          </label>
+          <select id="crop">
+            <option value="">-- Choose a crop --</option>
+            <option value="tur">Tur</option>
+            <option value="maize">Maize</option>
+            <option value="gram">Gram</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tur & Maize common inputs -->
+      <div id="turMaizeInputs" style="display:none;">
+        <div class="section-heading">Inputs for Tur / Maize</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="tmArea">
+              Area of agricultural land
+              <span class="units">(acres)</span>
+            </label>
+            <input id="tmArea" type="number" min="0" step="0.01" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tmRainfall">
+              Rainfall
+              <span class="units">(mm)</span>
+            </label>
+            <input id="tmRainfall" type="number" min="0" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tmFert">
+              Fertilizers
+              <span class="units">(kg)</span>
+            </label>
+            <input id="tmFert" type="number" min="0" step="0.1" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Maize-only management -->
+      <div id="maizeManagement" class="form-group" style="display:none;">
+        <label class="form-label" for="management">
+          Quality of management
+        </label>
+        <select id="management">
+          <option value="">-- Select quality --</option>
+          <option value="good">Good</option>
+          <option value="poor">Poor</option>
+        </select>
+      </div>
+
+      <!-- Gram inputs -->
+      <div id="gramInputs" style="display:none;">
+        <div class="section-heading">Inputs for Gram</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="gRainSep">
+              Rainfall in September
+              <span class="units">(mm)</span>
+            </label>
+            <input id="gRainSep" type="number" min="0" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="gRainOct">
+              Rainfall in October
+              <span class="units">(mm)</span>
+            </label>
+            <input id="gRainOct" type="number" min="0" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="gRainNov">
+              Rainfall in November
+              <span class="units">(mm)</span>
+            </label>
+            <input id="gRainNov" type="number" min="0" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="gArea">
+              Area of agricultural land
+              <span class="units">(acres)</span>
+            </label>
+            <input id="gArea" type="number" min="0" step="0.01" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="gFert">
+              Fertilizers
+              <span class="units">(kg)</span>
+            </label>
+            <input id="gFert" type="number" min="0" step="0.1" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons + Notes -->
+      <div class="button-row">
+        <button id="predictBtn" class="btn-primary" type="button">
+          <span class="btn-icon">🌱</span>
+          <span>Predict</span>
+        </button>
+        <div class="calc-note">
+          Result uses crop-specific formulas and, for Maize, the quality of management.
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="form-group result-group">
+        <label class="form-label" for="result">
+          Predicted yield
+          <span class="hint">(approximate, quintals)</span>
+        </label>
+        <input
+          id="result"
+          type="text"
+          readonly
+          placeholder="Prediction will appear here"
+        />
+        <div id="errorMsg" class="error" style="display: none;"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
